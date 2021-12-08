@@ -1,0 +1,137 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h1 style="text-align: center">Account Holder Info</h1><br>
+      <div class="row" [hidden]="!deleteMessage">
+           
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Account Holder Data Deleted</strong>
+                        </div>
+                </div>
+                <div class="col-sm-4"></div>
+        </div>           
+    </div>
+
+  
+  <div class="panel-body">
+      <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"  >
+          <thead class="thead-light">
+              <tr>
+                  <th>Account Holder Name</th>
+                  <th>Age</th>
+                  <th>Dob</th>
+                  <th>Address</th>
+                  <th>Contact No</th>
+                  <th>Gender</th>
+                  <th>Hobby</th>
+                  <th>Account Create Date</th>
+                  <th>Account Type</th>
+                  <th>Action</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let accountHolder of accountHolders ">
+                  <td>{{accountHolder.name}}</td>
+                  <td>{{accountHolder.age}}</td>
+                  <td>{{accountHolder.dob}}</td>
+                  <td>{{accountHolder.presentAddress}}</td>
+                  <td>{{accountHolder.contactNo}}</td>
+                  <td>{{accountHolder.gender}}</td>
+                  <td>{{accountHolder.hobby}}</td>
+                  <td>{{accountHolder.accountCreateDate}}</td>
+                  <td>{{accountHolder.accountType.type}}</td>
+                 
+                  <td><button (click)="deleteAccountHolder(accountHolder.id)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>&nbsp;
+                    <button (click)="updateAccountHolder(accountHolder.id)" class='btn btn-info'
+                    data-toggle="modal" data-target="#myModal">Update</button>
+                  </td>
+                </tr> 
+          </tbody><br>
+      </table>
+  </div>
+</div> 
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+          <form [formGroup]="accountHolderUpdateForm" #updaccholder (ngSubmit)="updateAccHolder(updaccholder)">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align: center">Update Account Holder Info</h4>
+        
+      </div>
+      
+      <!-- Modal body -->  
+      <div class="modal-body"  >  
+        <div [hidden]="isupdated">  
+
+            <input type="hidden" class="form-control"  formControlName="id"  [(ngModel)]="accountHolder.id" name ="id">  
+                    <div class="form-group">  
+                        <label for="name">Account Holder Name</label>  
+                        <input type="text" class="form-control"  formControlName="name"  [(ngModel)]="accountHolder.name" name ="name">  
+                    </div>  
+
+                    <div class="form-group">  
+                      <label for="age">Age</label>  
+                      <input type="number" class="form-control"  formControlName="age"  [(ngModel)]="accountHolder.age" name ="age">  
+                  </div> 
+
+                  <div class="form-group">  
+                    <label for="dob">Dob</label>  
+                    <input type="datetime" class="form-control"  formControlName="dob"  [(ngModel)]="accountHolder.dob" name ="dob">  
+                </div> 
+
+                <div class="form-group">  
+                  <label for="presentAddress">Address</label>  
+                  <input type="text" class="form-control"  formControlName="presentAddress"  [(ngModel)]="accountHolder.presentAddress" name ="presentAddress">  
+              </div> 
+
+              <div class="form-group">  
+                <label for="contactNo">Contact No</label>  
+                <input type="text" class="form-control"  formControlName="contactNo"  [(ngModel)]="accountHolder.contactNo" name ="contactNo">  
+            </div> 
+
+            <div class="form-group">  
+              <label for="gender">Gender</label>  
+              <input type="text" class="form-control"  formControlName="gender"  [(ngModel)]="accountHolder.gender" name ="gender">  
+          </div> 
+
+          <div class="form-group">  
+            <label for="hobby">Hobby</label>  
+            <input type="text" class="form-control"  formControlName="hobby"  [(ngModel)]="accountHolder.hobby" name ="hobby">  
+        </div> 
+
+        <div class="form-group">  
+          <label for="accountCreateDate">Account Create Date</label>  
+          <input type="datetime" class="form-control"  formControlName="accountCreateDate"  [(ngModel)]="accountHolder.accountCreateDate" name ="accountCreateDate">  
+      </div> 
+
+      <div class="form-group" >  
+        <label for="accountType">Account Type</label>  
+       
+        <input type="text" class="form-control"  formControlName="accountType"  [(ngModel)]="accountHolder.accountType" name ="accountType">  
+    </div> 
+
+    
+              
+          </div>    
+          <div [hidden]="!isupdated">  
+              <h4>Account Holder Details Updated!</h4>  
+          </div>          
+              
+    </div>  
+      
+    <!-- Modal footer -->  
+    <div class="modal-footer" >  
+      <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>  
+      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>  
+    </div>  
+      
+</form>  
+  </div>  
+</div>  
+</div>  

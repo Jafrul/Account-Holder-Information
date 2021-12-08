@@ -1,0 +1,39 @@
+<h3 text-align: center>Create Account Type</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="accountsaveform" #saveAccount (ngSubmit)="saveAccountType(saveAccount)">
+          <div class="form-group">
+              <label for="name">Account Type Name</label>
+              <input type="text" class="form-control"  formControlName="type" data-toggle="tooltip" 
+                 data-placement="right" title="Enter Account Type Name" >
+              <div class="alert alert-danger" *ngIf = "(Type.touched) && (Type.invalid)" 
+                style="margin-top: 5px;">
+                  <span *ngIf="Type.errors.required">Account Name is Required</span>
+                    <span *ngIf = "Type.errors.minlength"> 
+                        MinLength Error 
+                    </span>                   
+                </div>
+          </div>
+  
+          
+  
+          <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+  </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+      <div [hidden]="!submitted">
+         <h4>Has been saved successfully!</h4>
+         <button (click)="addAccountTypeForm()" class='btn btn-primary'>Add More Account Type</button>
+      </div>      
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+
