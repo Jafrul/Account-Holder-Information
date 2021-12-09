@@ -16,6 +16,7 @@ export class AddAccountHolderComponent implements OnInit {
   constructor(private accountHolderService:AccountHolderService) { }
 
   accountHolder : AccountHolderInfo=new AccountHolderInfo();
+  accountType : AccountType = new AccountType();
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>= new Subject();
 
@@ -50,6 +51,8 @@ export class AddAccountHolderComponent implements OnInit {
   saveAccountHolder(saveAccount: any){
     this.accountHolder=new AccountHolderInfo();
   //  this.accountHolder.id=this.Id.value;
+
+ 
     this.accountHolder.name=this.Name.value;
     this.accountHolder.age=this.Age.value;
     this.accountHolder.dob=this.Dob.value;
@@ -58,8 +61,10 @@ export class AddAccountHolderComponent implements OnInit {
     this.accountHolder.gender=this.Gender.value;
     this.accountHolder.hobby=this.Hobby.value;
     this.accountHolder.accountCreateDate=this.AccountCreateDate.value;
-    this.accountHolder.accountType=this.AccountType.value;
-   
+    this.accountType.id = this.AccountType.value; 
+    this.accountHolder.accountType=this.accountType;
+    
+    console.log(this.AccountType);
     console.log(this.Name);
     console.log(this.Age);
     console.log(this.Dob);
@@ -83,9 +88,9 @@ export class AddAccountHolderComponent implements OnInit {
   }
 
 
-  get Id(){
-    return this.accountHolderSaveForm.get('id');
-  }
+  // get Id(){
+  //   return this.accountHolderSaveForm.get('id');
+  // }
 
 
 

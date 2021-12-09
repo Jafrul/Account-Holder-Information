@@ -20,6 +20,7 @@ export class AccountHolderListComponent implements OnInit {
 
   accountHolders: Observable<any[]>;
   accountHolder : AccountHolderInfo=new AccountHolderInfo();
+  accountType: String;
   deleteMessage=false;
   accountlist:any;
   isupdated = false;    
@@ -34,6 +35,7 @@ export class AccountHolderListComponent implements OnInit {
       processing: true
     };   
     this.accountHolderService.getAccountHolderList().subscribe(data =>{
+      debugger;
     this.accountHolders =data;
     this.dtTrigger.next();
     })
@@ -61,7 +63,8 @@ export class AccountHolderListComponent implements OnInit {
         data => {
           console.log(data['name']);
           console.log(data['id']);
-          this.accountHolder=data           
+          this.accountHolder=data 
+          this.accountType= data.accountType.type      
         },
         error => console.log(error));
         

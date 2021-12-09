@@ -123,14 +123,20 @@
   <label for="accountType">Account Type</label>  
     <select class="form-control" formControlName="accountType" required >                                     
       
-      <!-- <option value="Savings" [selected]="'Savings' == account.type">Savings</option>   -->
-        <!-- <option *ngFor="let account of accounts" type = "hidden" [ngValue]="account.id"></option> -->
-        <option *ngFor="let account of accounts" [selected]='account.type' [ngValue]="account.type">{{account.type}}</option>
+      <!-- <option value="Savings" [selected]="'Savings' == account.type">Savings</option>   
+         <option *ngFor="let account of accounts" type = "hidden" [ngValue]="account.id"></option>  -->
+        <option *ngFor="let account of accounts" [selected]="account.type" [ngValue]="account.id">{{account.type}}</option>
     
     
     </select>                                 
       </div> 
    
+      <!-- <div class="form-group" >  
+        <label for="accountType">Account Type</label>  
+       
+        <input type="text" class="form-control"  formControlName="accountType"  [(ngModel)]="account.type" name ="accountType">  
+    </div>  -->
+
          
           <button type="submit" class="btn btn-success">Submit</button>
       </form>
