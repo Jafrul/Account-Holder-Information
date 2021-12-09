@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountTypeService } from '../account-type.service';
-import { AccountType } from '../account-type';
+import { AccountType } from '../add-account-type/account-type';
 import { Observable,Subject } from "rxjs";
 
 import {FormControl,FormGroup,Validators} from '@angular/forms';

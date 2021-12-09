@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountHolderService } from '../account-holder.service';
-import { AccountHolderInfo } from '../account-holder-info';
+import { AccountHolderInfo } from '../add-account-holder/account-holder-info';
 import { Observable,Subject } from "rxjs";
 import {FormControl,FormGroup,Validators} from '@angular/forms';
+import { AccountType } from '../add-account-type/account-type';
 
 @Component({
   selector: 'app-account-holder-list',
@@ -20,7 +21,10 @@ export class AccountHolderListComponent implements OnInit {
 
   accountHolders: Observable<any[]>;
   accountHolder : AccountHolderInfo=new AccountHolderInfo();
-  accountType: String;
+ //  accountType:String;
+  
+  accountType: AccountType=new AccountType;
+  
   deleteMessage=false;
   accountlist:any;
   isupdated = false;    
@@ -35,7 +39,7 @@ export class AccountHolderListComponent implements OnInit {
       processing: true
     };   
     this.accountHolderService.getAccountHolderList().subscribe(data =>{
-      debugger;
+      
     this.accountHolders =data;
     this.dtTrigger.next();
     })
@@ -64,7 +68,8 @@ export class AccountHolderListComponent implements OnInit {
           console.log(data['name']);
           console.log(data['id']);
           this.accountHolder=data 
-          this.accountType= data.accountType.type      
+          this.accountType=data.accountType.id
+          this.accountType= data.accountType.type 
         },
         error => console.log(error));
         
@@ -97,6 +102,14 @@ export class AccountHolderListComponent implements OnInit {
    this.accountHolder.hobby=this.Hobby.value;
    this.accountHolder.accountCreateDate=this.AccountCreateDate.value;
    this.accountHolder.accountType=this.AccountType.value;
+   
+
+  //  this.accountType.id = this.AccountType.value; 
+  //  this.accountHolder.accountType=this.accountType;
+
+ //  this.xyz.id = this.AccountType.value;
+  //  this.accountType.type=this.AccountType.value;
+ //   this.accountHolder.accountType=this.xyz;
    
    console.log(this.Name.value);
    console.log(this.Id.value);

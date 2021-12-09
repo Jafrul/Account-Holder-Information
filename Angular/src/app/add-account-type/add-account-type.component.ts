@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountTypeService } from '../account-type.service';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
-import { AccountType } from '../account-type';
+import { AccountType } from './account-type';
 @Component({
   selector: 'app-add-account-type',
   templateUrl: './add-account-type.component.html',

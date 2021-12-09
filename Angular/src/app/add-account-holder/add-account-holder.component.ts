@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountHolderService } from '../account-holder.service';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
-import { AccountHolderInfo } from '../account-holder-info';
-import { AccountType } from '../account-type';
+import { AccountHolderInfo } from './account-holder-info';
+import { AccountType } from '../add-account-type/account-type';
 import { Observable,Subject } from "rxjs";
 
 
@@ -63,6 +63,7 @@ export class AddAccountHolderComponent implements OnInit {
     this.accountHolder.accountCreateDate=this.AccountCreateDate.value;
     this.accountType.id = this.AccountType.value; 
     this.accountHolder.accountType=this.accountType;
+    
     
     console.log(this.AccountType);
     console.log(this.Name);
