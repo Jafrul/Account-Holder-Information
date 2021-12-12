@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountHolderService } from '../account-holder.service';
+import { AccountHolderService } from '../services/account-holder.service';
 import { AccountHolderInfo } from '../add-account-holder/account-holder-info';
 import { Observable,Subject } from "rxjs";
 import {FormControl,FormGroup,Validators} from '@angular/forms';
@@ -21,10 +21,10 @@ export class AccountHolderListComponent implements OnInit {
 
   accountHolders: Observable<any[]>;
   accountHolder : AccountHolderInfo=new AccountHolderInfo();
- //  accountType:String;
+ 
   
   accountType: AccountType=new AccountType;
-  
+  accounts: Observable<any[]>;
   deleteMessage=false;
   accountlist:any;
   isupdated = false;    
@@ -37,7 +37,13 @@ export class AccountHolderListComponent implements OnInit {
       stateSave:true,
       lengthMenu:[[5, 10, 15, -1], [5, 10, 15, "All"]],
       processing: true
-    };   
+    }; 
+    
+    this.accountHolderService.getAccountTypeList().subscribe(data =>{
+      this.accounts =data;
+       
+      })
+
     this.accountHolderService.getAccountHolderList().subscribe(data =>{
       
     this.accountHolders =data;
@@ -68,8 +74,8 @@ export class AccountHolderListComponent implements OnInit {
           console.log(data['name']);
           console.log(data['id']);
           this.accountHolder=data 
-          this.accountType=data.accountType.id
-          this.accountType= data.accountType.type 
+          // this.accountType=data.accountType.id
+          // this.accountType= data.accountType.type 
         },
         error => console.log(error));
         
@@ -101,15 +107,15 @@ export class AccountHolderListComponent implements OnInit {
    this.accountHolder.gender=this.Gender.value;
    this.accountHolder.hobby=this.Hobby.value;
    this.accountHolder.accountCreateDate=this.AccountCreateDate.value;
-   this.accountHolder.accountType=this.AccountType.value;
+  //  this.accountHolder.accountType=this.AccountType.value;
    
+   this.accountType.id = this.AccountType.value; 
+    this.accountHolder.accountType=this.accountType;
 
   //  this.accountType.id = this.AccountType.value; 
   //  this.accountHolder.accountType=this.accountType;
 
- //  this.xyz.id = this.AccountType.value;
-  //  this.accountType.type=this.AccountType.value;
- //   this.accountHolder.accountType=this.xyz;
+
    
    console.log(this.Name.value);
    console.log(this.Id.value);

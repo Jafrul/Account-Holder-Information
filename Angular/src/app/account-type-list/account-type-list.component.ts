@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountTypeService } from '../account-type.service';
+import { AccountTypeService } from '../services/account-type.service';
 import { AccountType } from '../add-account-type/account-type';
 import { Observable,Subject } from "rxjs";
 

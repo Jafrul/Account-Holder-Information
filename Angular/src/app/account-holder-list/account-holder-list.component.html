@@ -110,13 +110,23 @@
           <input type="datetime" class="form-control"  formControlName="accountCreateDate"  [(ngModel)]="accountHolder.accountCreateDate" name ="accountCreateDate">  
       </div> 
 
-      <div class="form-group" >  
+      <!-- <div class="form-group" >  
         <label for="accountType">Account Type</label>  
-       
+         <option *ngFor="let account of accounts" [selected]="account.type" [ngValue]="account.id">{{account.type}}</option> 
         <input type="text" class="form-control"  formControlName="accountType"  [(ngModel)]="accountType.type" name ="accountType">  
-    </div> 
+    </div>  -->
 
-    
+    <div class="form-group">  
+      <label for="accountType">Account Type</label>  
+        <select class="form-control" formControlName="accountType" required >                                     
+          
+          <!-- <option value="Savings" [selected]="'Savings' == account.type">Savings</option>   
+             <option *ngFor="let account of accounts" type = "hidden" [ngValue]="account.id"></option>  -->
+            <option *ngFor="let account of accounts" [selected]="account.type" [ngValue]="account.id">{{account.type}}</option>
+        
+        
+        </select>                                 
+          </div> 
               
           </div>    
           <div [hidden]="!isupdated">  

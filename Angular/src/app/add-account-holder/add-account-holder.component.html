@@ -123,8 +123,7 @@
   <label for="accountType">Account Type</label>  
     <select class="form-control" formControlName="accountType" required >                                     
       
-      <!-- <option value="Savings" [selected]="'Savings' == account.type">Savings</option>   
-         <option *ngFor="let account of accounts" type = "hidden" [ngValue]="account.id"></option>  -->
+    
         <option *ngFor="let account of accounts" [selected]="account.type" [ngValue]="account.id">{{account.type}}</option>
     
     

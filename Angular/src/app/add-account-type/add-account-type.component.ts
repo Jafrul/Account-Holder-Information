@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountTypeService } from '../account-type.service';
+import { AccountTypeService } from '../services/account-type.service';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 import { AccountType } from './account-type';
 @Component({
